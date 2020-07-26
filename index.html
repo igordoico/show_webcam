@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="https://unpkg.com/webcam-easy/dist/webcam-easy.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <title>Show Webcam</title>
+    <style>
+        :root{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            margin: 0;
+            padding: 0;
+            overflow-y: hidden;
+            background-color: black;
+        }
+        video {
+            display: flex;
+            margin-left: auto;
+            margin-right: auto;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            z-index: -100;
+            width: auto;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+<!--<button id="cameraFlip">flip cam</button>-->
+<video id="webcam" autoplay playsinline></video>
+<canvas id="canvas" class="d-none"></canvas>
+<audio id="snapSound" src="" preload="auto"></audio>
+<script>
+    const webcamElement = document.getElementById('webcam');
+    const canvasElement = document.getElementById('canvas');
+    const snapSoundElement = document.getElementById('snapSound');
+    const webcam = new Webcam(webcamElement, 'user', canvasElement, snapSoundElement);
+    // console.log(await navigator.mediaDevices.enumerateDevices())
+    webcam.start()
+        .then(result => {
+            console.log("webcam started");
+            webcam.flip()
+
+        })
+        .catch(err => {
+            console.log(err);
+        });
+
+    //
+    // let picture = webcam.snap();
+    // document.querySelector('#download-photo').href = picture;
+    //
+    //
+    $('#cameraFlip').click(function () {
+        webcam.flip();
+    });
+</script>
+</body>
+</html>

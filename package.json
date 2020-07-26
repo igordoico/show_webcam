@@ -1,0 +1,7 @@
+{
+  "name": "webcam_show",
+  "version": "1.0.0",
+  "dependencies": {
+    "webcam-easy": "^1.0.5"
+  }
+}
